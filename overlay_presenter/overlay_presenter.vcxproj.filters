@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\injector">
+      <UniqueIdentifier>{6cd867f1-8fe8-4e5d-ac54-0611a8ae6f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\injector">
+      <UniqueIdentifier>{0d66dd6a-bbad-4cee-9abe-480588392340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\detour">
+      <UniqueIdentifier>{8256f9b2-07ef-4142-a38e-8da0b39fd07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\detour">
+      <UniqueIdentifier>{c55f85e5-8528-4cb3-982c-913bbee67533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hook">
+      <UniqueIdentifier>{f800f0fe-0ca1-43d2-a451-7d1a06a753e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hook">
+      <UniqueIdentifier>{3edf65bd-68e2-41f0-942d-529e545ac098}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="injector\process.h">
+      <Filter>Header Files\injector</Filter>
+    </ClInclude>
+    <ClInclude Include="injector\image.h">
+      <Filter>Header Files\injector</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\kernel.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\d3d11_c.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\dxgi_c.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\d3d11_device.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\dxgi_swap_chain.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\d3d11_device_context.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\d3d11_detour.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="hook\dxgi_hook.h">
+      <Filter>Header Files\hook</Filter>
+    </ClInclude>
+    <ClInclude Include="hook\d3d12_hook.h">
+      <Filter>Header Files\hook</Filter>
+    </ClInclude>
+    <ClInclude Include="hook\d3d11_hook.h">
+      <Filter>Header Files\hook</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="injector\image.cc">
+      <Filter>Source Files\injector</Filter>
+    </ClCompile>
+    <ClCompile Include="injector\process.cc">
+      <Filter>Source Files\injector</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logger.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\kernel.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\d3d11_device_context.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\d3d11_device.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\dxgi_swap_chain.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\d3d11_detour.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\dxgi_device.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\dxgi_adapter.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\dxgi_factory.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="hook\dxgi_hook.cc">
+      <Filter>Source Files\hook</Filter>
+    </ClCompile>
+    <ClCompile Include="hook\d3d12_hook.cc">
+      <Filter>Source Files\hook</Filter>
+    </ClCompile>
+    <ClCompile Include="hook\d3d11_hook.cc">
+      <Filter>Source Files\hook</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
