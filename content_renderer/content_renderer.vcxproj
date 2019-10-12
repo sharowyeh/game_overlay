@@ -23,7 +23,7 @@
     <ProjectGuid>{0159CD20-37EF-4EA4-95EE-93F3D20781F2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>contentrenderer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
