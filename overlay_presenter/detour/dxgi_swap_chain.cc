@@ -68,15 +68,18 @@ namespace detour
 				m_pDXGIHook = new hook::DXGIHook(This);
 			else
 			{
+				// DEBUG: drawing a rectagle make sure it works
 				if (m_DXGIOverlayRect.width == 0)
 					m_pDXGIHook->UpdateOverlayRect(20, 20, 100, 150, &m_DXGIOverlayRect);
 				else
 				{
+					// DEBUG: rectangle buffer format BGRA32
 					size_t length = m_DXGIOverlayRect.width * m_DXGIOverlayRect.height * 4;
 					BYTE *pbData = new BYTE[length];
 					for (size_t i = 0; i < length; i++)
 					{
-						if (i % 4 == 0 || i % 4 == 3)
+						// DEBUG: given a red
+						if (i % 4 == 2 || i % 4 == 3)
 							pbData[i] = (BYTE)255;
 						else
 							pbData[i] = (BYTE)0;
