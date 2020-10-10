@@ -29,3 +29,7 @@ Default place of **detours.h** file for this project is at *<repo root>*/detours
 Build static library file **detours.lib**, copy x64 arch to *<repo root>*/detours/lib.X64/ and x86 arch to *<repo root>*/detours/lib.X86/
 
 Look into detour namespace and source files at overlay presenter project for more details.
+
+### Other options ###
+
+Windows dll and memory injection - [Blackbone](https://github.com/DarthTon/Blackbone)
