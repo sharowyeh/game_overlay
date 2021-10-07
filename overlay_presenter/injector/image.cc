@@ -292,12 +292,12 @@ namespace injector
 			}
 
 			ULONG_PTR loaded_func_ptr = (ULONG_PTR)module_handle + func_rva;
-			LOGFILE("LoadedModuleFunc: ptr=0x%p\n", loaded_func_ptr);
 			result_ptr = loaded_func_ptr;
 			break;
 		}
 		// Unmap file's view after using it
 		UnmapFileView(file_handle, mapping_handle, file_view_ptr);
+		LOGFILE("LoadedModuleFunc: ptr=0x%p\n", result_ptr);
 		return result_ptr;
 	}
 

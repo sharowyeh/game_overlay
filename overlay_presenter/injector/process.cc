@@ -263,7 +263,6 @@ namespace injector
 		return result;
 	}
 
-#if _WIN64
 	BOOL InvokeRemoteThread64(HANDLE proc_handle, ULONG_PTR func_ptr, PBYTE param_ptr, SIZE_T param_size)
 	{
 		// Limit address range for x64 virtual memory allocated
@@ -281,7 +280,6 @@ namespace injector
 		BOOL result = ExecuteRemoteAddress(proc_handle, func_ptr, alloc_ptr, alloc_size, &func_result);
 		return result;
 	}
-#endif
 
 	BOOL InvokeRemoteThread32(HANDLE proc_handle, ULONG_PTR func_ptr, PBYTE param_ptr, SIZE_T param_size)
 	{
@@ -340,16 +338,18 @@ namespace injector
 			param_size = strlen(dll_path32);
 			result = InvokeRemoteThread32(proc_handle, func_ptr, param_ptr, param_size);
 		}
-#if _WIN64
 		// x64 platform inject x64 process
 		if (machine_type == IMAGE_FILE_MACHINE_AMD64)
 		{
+#if _WIN64
 			func_ptr = GetLoadedFuncAddress("kernel32.dll", "LoadLibraryA");
+#else
+			func_ptr = GetImageFuncAddress(proc_handle, "c:\\windows\\system32\\kernel32.dll", "LoadLibraryA");
+#endif
 			param_ptr = (PBYTE)dll_path64;
 			param_size = strlen(dll_path64);
 			result = InvokeRemoteThread64(proc_handle, func_ptr, param_ptr, param_size);
 		}
-#endif
 
 		LOGFILE("%s: result=%d\n", __func__, result);
 		return result;
@@ -431,15 +431,18 @@ namespace injector
 			param_ptr = (PBYTE)dll_path32;
 			param_size = strlen(dll_path32);
 		}
-#if _WIN64
 		// x64 platform inject x64 process
 		if (machine_type == IMAGE_FILE_MACHINE_AMD64)
 		{
+#if _WIN64
 			func_ptr = GetLoadedFuncAddress("kernel32.dll", "LoadLibraryA");
+#else
+			func_ptr = GetImageFuncAddress(proc_handle, "c:\\windows\\system32\\kernel32.dll", "LoadLibraryA");
+#endif
 			param_ptr = (PBYTE)dll_path64;
 			param_size = strlen(dll_path64);
 		}
-#endif
+
 		if (func_ptr == NULL || param_ptr == NULL || param_size == 0)
 		{
 			LOGFILE("%s: arguments failed func_ptr=0x%p param_ptr=0x%p param_size=%d\n", __func__, func_ptr, param_ptr, param_size);

@@ -2,6 +2,11 @@
 #include "dxgi_c.h"
 #include "../hook/dxgi_hook.h"
 
+#ifdef LOGFILE
+#undef LOGFILE
+#define LOGFILE(fmt, ...) WriteLog("detour.txt", fmt, ##__VA_ARGS__)
+#endif
+
 #if _DEBUG
 #define D3D_DEBUG_INFO
 #endif

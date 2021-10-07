@@ -1,5 +1,10 @@
 #include "d3d11_detour.h"
 
+#ifdef LOGFILE
+#undef LOGFILE
+#define LOGFILE(fmt, ...) WriteLog("detour.txt", fmt, ##__VA_ARGS__)
+#endif
+
 namespace detour
 {
 	BOOL AttachD3D11()
@@ -9,6 +14,7 @@ namespace detour
 		ZeroMemory(&wc, sizeof(WNDCLASSEX));
 		wc.cbSize = sizeof(WNDCLASSEX);
 		wc.style = CS_CLASSDC;
+		wc.hInstance = GetModuleHandle(NULL);
 		wc.lpszClassName = L"dummy_class";
 		wc.lpfnWndProc = DefWindowProc;
 		RegisterClassEx(&wc);
