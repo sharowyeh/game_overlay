@@ -15,10 +15,14 @@
 // Function type definition
 typedef BOOL(WINAPI *CreateProcessAType)(__in_opt LPCSTR, __inout_opt LPSTR, __in_opt LPSECURITY_ATTRIBUTES, __in_opt LPSECURITY_ATTRIBUTES, __in BOOL, __in DWORD, __in_opt LPVOID, __in_opt LPCSTR, __in LPSTARTUPINFOA, __out LPPROCESS_INFORMATION);
 typedef BOOL(WINAPI *CreateProcessWType)(__in_opt LPCWSTR, __inout_opt LPWSTR, __in_opt LPSECURITY_ATTRIBUTES, __in_opt LPSECURITY_ATTRIBUTES, __in BOOL, __in DWORD, __in_opt LPVOID, __in_opt LPCWSTR, __in LPSTARTUPINFOW, __out LPPROCESS_INFORMATION);
+typedef HMODULE(WINAPI *LoadLibraryAType)(__in LPCSTR);
+typedef HMODULE(WINAPI *LoadLibraryWType)(__in LPCWSTR);
 
 // Original function address
 CreateProcessAType Kernel32_CreateProcessA = NULL;
 CreateProcessWType Kernel32_CreateProcessW = NULL;
+LoadLibraryAType Kernel32_LoadLibraryA = NULL;
+LoadLibraryWType Kernel32_LoadLibraryW = NULL;
 
 // Detour function address
 BOOL WINAPI Detour_CreateProcessA(
@@ -52,7 +56,7 @@ BOOL WINAPI Detour_CreateProcessA(
 		lpProcessInformation);
 	if (bResult)
 	{
-		LOGFILE("Detour_CreateProcessA: app=%s cmdline=%s hth=%p\n", lpApplicationName, lpCommandLine, lpProcessInformation->hThread);
+		LOGFILE("%s: app=%s cmdline=%s hth=%p\n", __func__, lpApplicationName, lpCommandLine, lpProcessInformation->hThread);
 		// Lets method find process platform target and given matched dll module handle
 		HANDLE thread_handle = injector::AttachProcessHandle(lpProcessInformation->hProcess);
 		LOGFILE("AttachProcessHandle: thread_handle=0x%x\n", thread_handle);
@@ -97,7 +101,7 @@ BOOL WINAPI Detour_CreateProcessW(
 		lpProcessInformation);
 	if (bResult)
 	{
-		LOGFILE("Detour_CreateProcessW: app=%S cmdline=%S hth=%p\n", lpApplicationName, lpCommandLine, lpProcessInformation->hThread);
+		LOGFILE("%s: app=%S cmdline=%S hth=%p\n", __func__, lpApplicationName, lpCommandLine, lpProcessInformation->hThread);
 		// Lets method find process platform target and given matched dll module handle
 		HANDLE thread_handle = injector::AttachProcessHandle(lpProcessInformation->hProcess);
 		LOGFILE("AttachProcessHandle: thread_handle=0x%x\n", thread_handle);
@@ -112,6 +116,20 @@ BOOL WINAPI Detour_CreateProcessW(
 	return bResult;
 }
 
+HMODULE WINAPI Detour_LoadLibraryA(LPCSTR lpLibFileName)
+{
+	HMODULE hMod = Kernel32_LoadLibraryA(lpLibFileName);
+	LOGFILE("%s: hmod:0x%x %s\n", __func__, hMod, lpLibFileName);
+	return hMod;
+}
+
+HMODULE WINAPI Detour_LoadLibraryW(LPCWSTR lpLibFileName)
+{
+	HMODULE hMod = Kernel32_LoadLibraryW(lpLibFileName);
+	LOGFILE("%s: hmod:0x%x %S\n", __func__, hMod, lpLibFileName);
+	return hMod;
+}
+
 namespace detour
 {
 	BOOL AttachKernel()
@@ -120,6 +138,7 @@ namespace detour
 		LONG result = 0;
 		result = DetourTransactionBegin();
 		result = DetourUpdateThread(GetCurrentThread());
+
 		Kernel32_CreateProcessA = reinterpret_cast<CreateProcessAType>(
 			injector::GetLoadedFuncAddress("kernel32.dll", "CreateProcessA"));
 		Kernel32_CreateProcessW = reinterpret_cast<CreateProcessWType>(
@@ -134,6 +153,19 @@ namespace detour
 			Kernel32_CreateProcessW, Detour_CreateProcessW);
 		if (result != 0)
 			Kernel32_CreateProcessW = NULL;
+		Kernel32_LoadLibraryA = reinterpret_cast<LoadLibraryAType>(
+			injector::GetLoadedFuncAddress("kernel32.dll", "LoadLibraryA"));
+		Kernel32_LoadLibraryW = reinterpret_cast<LoadLibraryWType>(
+			injector::GetLoadedFuncAddress("kernel32.dll", "LoadLibraryW"));
+		result = DetourAttach(&(PVOID &)Kernel32_LoadLibraryA, Detour_LoadLibraryA);
+		LOGFILE("%s: LoadLibraryA = result=0x%x 0x%p -> 0x%p\n", __func__, result, Kernel32_LoadLibraryA, Detour_LoadLibraryA);
+		if (result != 0)
+			Kernel32_LoadLibraryA = NULL;
+		result = DetourAttach(&(PVOID &)Kernel32_LoadLibraryW, Detour_LoadLibraryW);
+		LOGFILE("%s: LoadLibraryW = result=0x%x 0x%p -> 0x%p\n", __func__, result, Kernel32_LoadLibraryW, Detour_LoadLibraryW);
+		if (result != 0)
+			Kernel32_LoadLibraryW = NULL;
+
 		result = DetourTransactionCommit();
 		return result == 0 ? TRUE : FALSE;
 	}
