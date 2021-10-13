@@ -1,4 +1,4 @@
-#include "d3d11_detour.h"
+#include "d3d_detour.h"
 #include "dxgi_c.h"
 #include "../hook/dxgi_hook.h"
 

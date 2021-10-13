@@ -1,4 +1,4 @@
-#include "d3d11_detour.h"
+#include "d3d_detour.h"
 #include "d3d11_c.h"
 
 #ifdef LOGFILE

@@ -57,16 +57,7 @@
     <ClInclude Include="detour\dxgi_c.h">
       <Filter>Header Files\detour</Filter>
     </ClInclude>
-    <ClInclude Include="detour\d3d11_device.h">
-      <Filter>Header Files\detour</Filter>
-    </ClInclude>
     <ClInclude Include="detour\dxgi_swap_chain.h">
-      <Filter>Header Files\detour</Filter>
-    </ClInclude>
-    <ClInclude Include="detour\d3d11_device_context.h">
-      <Filter>Header Files\detour</Filter>
-    </ClInclude>
-    <ClInclude Include="detour\d3d11_detour.h">
       <Filter>Header Files\detour</Filter>
     </ClInclude>
     <ClInclude Include="hook\dxgi_hook.h">
@@ -77,6 +68,12 @@
     </ClInclude>
     <ClInclude Include="hook\d3d11_hook.h">
       <Filter>Header Files\hook</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\d3d12_c.h">
+      <Filter>Header Files\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="detour\d3d_detour.h">
+      <Filter>Header Files\detour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +104,6 @@
     <ClCompile Include="detour\dxgi_swap_chain.cc">
       <Filter>Source Files\detour</Filter>
     </ClCompile>
-    <ClCompile Include="detour\d3d11_detour.cc">
-      <Filter>Source Files\detour</Filter>
-    </ClCompile>
     <ClCompile Include="detour\dxgi_device.cc">
       <Filter>Source Files\detour</Filter>
     </ClCompile>
@@ -127,6 +121,15 @@
     </ClCompile>
     <ClCompile Include="hook\d3d11_hook.cc">
       <Filter>Source Files\hook</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\d3d12_device.cpp">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\d3d_detour.cc">
+      <Filter>Source Files\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="detour\d3d12_command_list.cpp">
+      <Filter>Source Files\detour</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

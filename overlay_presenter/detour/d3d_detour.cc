@@ -1,4 +1,4 @@
-#include "d3d11_detour.h"
+#include "d3d_detour.h"
 
 #ifdef LOGFILE
 #undef LOGFILE
@@ -65,11 +65,19 @@ namespace detour
 		{
 			result = pDXGIAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void **>(&pDXGIFactory));
 			result = AttachDXGIAdapter(pDXGIAdapter);
+			// Create D3D12Device from adapter
+			ID3D12Device *pD3D12Device = NULL;
+			if (pD3D12Device != NULL) {
+				D3D12CreateDevice(pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&pD3D12Device));
+				result = AttachD3D12Device(pD3D12Device);
+				//TODO: create command allocator and list
+			}
 			pDXGIAdapter->Release();
 		}
 		if (pDXGIFactory != NULL)
 		{
 			result = AttachDXGIFactory(pDXGIFactory);
+
 			pDXGIFactory->Release();
 		}
 		if (pSwapChain != NULL)
@@ -94,6 +102,8 @@ namespace detour
 
 	BOOL DetachD3D11()
 	{
+		DetachD3D12CommandList();
+		DetachD3D12Device();
 		DetachDXGIDevice();
 		DetachDXGIAdapter();
 		DetachDXGIFactory();

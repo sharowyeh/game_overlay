@@ -1,11 +1,13 @@
 #include "dxgi_hook.h"
 #include "d3d11_hook.h"
+#include "d3d12_hook.h"
 
 #pragma comment(lib, "dxgi.lib")
 
 namespace hook
 {
 	D3D11Hook *m_pD3D11Hook = NULL;
+	D3D12Hook *m_pD3D12Hook = NULL;
 
 	DXGIHook::DXGIHook(IDXGISwapChain *pSwapChain)
 	{
@@ -19,6 +21,7 @@ namespace hook
 		m_pSwapChain = pSwapChain;
 		m_pHookDesc = new DXGI_HOOK_DESC();
 		m_pD3D11Hook = new D3D11Hook(pSwapChain);
+		m_pD3D12Hook = new D3D12Hook(pSwapChain);
 
 		CreateResource();
 	}
@@ -50,6 +53,9 @@ namespace hook
 		//HRESULT result = CreateD3D11Resource(m_pSwapChain);
 		HRESULT result = m_pD3D11Hook->D3D11CreateResource();
 		LOGFILE("%s: CreateD3D11Resource result=0x%x\n", __func__, result);
+		if (FAILED(result))
+			result = m_pD3D12Hook->D3D12CreateResource();
+		LOGFILE("%s: CreateD3D12Resource result=0x%x\n", __func__, result);
 		if (SUCCEEDED(result))
 			IsInitialized = true;
 	}

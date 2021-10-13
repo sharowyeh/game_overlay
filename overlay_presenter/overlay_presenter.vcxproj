@@ -148,10 +148,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="detour\d3d11_detour.h" />
-    <ClInclude Include="detour\d3d11_device.h" />
+    <ClInclude Include="detour\d3d_detour.h" />
     <ClInclude Include="detour\d3d11_c.h" />
-    <ClInclude Include="detour\d3d11_device_context.h" />
+    <ClInclude Include="detour\d3d12_c.h" />
     <ClInclude Include="detour\dxgi_swap_chain.h" />
     <ClInclude Include="detour\dxgi_c.h" />
     <ClInclude Include="detour\kernel.h" />
@@ -165,9 +164,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="detour\d3d11_detour.cc" />
+    <ClCompile Include="detour\d3d12_command_list.cpp" />
+    <ClCompile Include="detour\d3d_detour.cc" />
     <ClCompile Include="detour\d3d11_device.cc" />
     <ClCompile Include="detour\d3d11_device_context.cc" />
+    <ClCompile Include="detour\d3d12_device.cpp" />
     <ClCompile Include="detour\dxgi_adapter.cc" />
     <ClCompile Include="detour\dxgi_device.cc" />
     <ClCompile Include="detour\dxgi_factory.cc" />
