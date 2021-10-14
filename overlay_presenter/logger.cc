@@ -28,7 +28,7 @@ BOOL WriteLog(const char *file_name, const char *fmt, ...)
 	char buff[4096] = "";
 	SYSTEMTIME st;
 	GetSystemTime(&st);
-	sprintf_s(buff, "%02d:%02d:%02d.%03d ", st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
+	sprintf_s(buff, "%02d:%02d:%02d.%03d[%05d] ", st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, GetCurrentThreadId());
 	log << (buff);
 
 	// Use variafic method represent ##__VA_ARGS__ macro

@@ -50,8 +50,6 @@ namespace hook
 		void D3D11UpdateShaderResource(unsigned char *pbData, DXGI_HOOK_RECT rect);
 		void D3D11ReleaseShaderResource();
 	private:
-		HRESULT CompileShaderV4_0(const char *entry, const char *target, ID3DBlob **ppCode);
-
 		IDXGISwapChain * m_pSwapChain = NULL;
 		ID3D11Device *m_pDevice = NULL;
 		ID3D11DeviceContext *m_pDeferredContext = NULL;

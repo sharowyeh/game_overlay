@@ -34,7 +34,8 @@ namespace detour
 			_COM_Outptr_  void **ppvObject)
 		{
 			HRESULT result = m_pD3D11DeviceVtbl->QueryInterface(pDevice, riid, ppvObject);
-			LOGFILE("Detour_D3D11Device_QueryInterface: result=0x%x device=0x%p vobj=0x%p\n", result, pDevice, (*ppvObject));
+			LOGFILE("Detour_D3D11Device_QueryInterface: result=0x%x device=0x%p vobj=0x%p\n", result, pDevice,
+				(ppvObject == NULL ? NULL : (*ppvObject)));
 			return result;
 		}
 
@@ -98,7 +99,8 @@ namespace detour
 			_Outptr_  ID3D11DeviceContext **ppImmediateContext)
 		{
 			m_pD3D11DeviceVtbl->GetImmediateContext(pDevice, ppImmediateContext);
-			LOGFILE("%s: device=0x%p context=0x%p\n", __func__, pDevice, (*ppImmediateContext));
+			LOGFILE("%s: device=0x%p context=0x%p\n", __func__, pDevice,
+				(ppImmediateContext == NULL ? NULL : (*ppImmediateContext)));
 		}
 
 #ifdef __cplusplus

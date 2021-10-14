@@ -75,6 +75,9 @@
     <ClInclude Include="detour\d3d_detour.h">
       <Filter>Header Files\detour</Filter>
     </ClInclude>
+    <ClInclude Include="hook\d3d_hook.h">
+      <Filter>Header Files\hook</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="injector\image.cc">

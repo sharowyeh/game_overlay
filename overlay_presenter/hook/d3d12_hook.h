@@ -14,9 +14,8 @@ namespace hook
 		void D3D12DrawOverlay(unsigned char *pbData, DXGI_HOOK_RECT rect);
 		HRESULT D3D12CreateResource();
 		HRESULT D3D12ReleaseResource();
-	private:
-		HRESULT CompileShaderV4_0(const char *entry, const char *target, ID3DBlob **ppCode);
 
+	private:
 		IDXGISwapChain *m_pSwapChain = NULL;
 		ID3D12Device *m_pDevice = NULL;
 		ID3D12CommandAllocator *m_pCommandAllocator = NULL;

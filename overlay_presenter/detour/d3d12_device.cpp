@@ -35,7 +35,8 @@ namespace detour
 		{
 
 			HRESULT result = m_pD3D12DeviceVtbl->QueryInterface(This, riid, ppvObject);
-			LOGFILE("%s: result=0x%x device=0x%p vobj=0x%p\n", __func__, result, This, (*ppvObject));
+			LOGFILE("%s: result=0x%x device=0x%p vobj=0x%p\n", __func__, result, This,
+				(ppvObject == NULL ? NULL : (*ppvObject)));
 			return result;
 		}
 
@@ -62,7 +63,8 @@ namespace detour
 			_COM_Outptr_  void **ppCommandQueue)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateCommandQueue(This, pDesc, riid, ppCommandQueue);
-			LOGFILE("%s: result=0x%x device=0x%p queue=0x%p\n", __func__, result, This, (*ppCommandQueue));
+			LOGFILE("%s: result=0x%x device=0x%p queue=0x%p\n", __func__, result, This,
+				(ppCommandQueue == NULL ? NULL : (*ppCommandQueue)));
 			return result;
 		}
 
@@ -73,7 +75,8 @@ namespace detour
 			_COM_Outptr_  void **ppCommandAllocator)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateCommandAllocator(This, type, riid, ppCommandAllocator);
-			LOGFILE("%s: result=0x%x device=0x%p allocator=0x%p\n", __func__, result, This, (*ppCommandAllocator));
+			LOGFILE("%s: result=0x%x device=0x%p allocator=0x%p\n", __func__, result, This,
+				(ppCommandAllocator == NULL ? NULL : (*ppCommandAllocator)));
 			return result;
 		}
 
@@ -84,7 +87,8 @@ namespace detour
 			_COM_Outptr_  void **ppPipelineState)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateGraphicsPipelineState(This, pDesc, riid, ppPipelineState);
-			LOGFILE("%s: result=0x%x device=0x%p pipeline=0x%p\n", __func__, result, This, (*ppPipelineState));
+			LOGFILE("%s: result=0x%x device=0x%p pipeline=0x%p\n", __func__, result, This,
+				(ppPipelineState == NULL ? NULL : (*ppPipelineState)));
 			return result;
 		}
 
@@ -95,7 +99,8 @@ namespace detour
 			_COM_Outptr_  void **ppPipelineState)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateComputePipelineState(This, pDesc, riid, ppPipelineState);
-			LOGFILE("%s: result=0x%x device=0x%p pipeline=0x%p\n", __func__, result, This, (*ppPipelineState));
+			LOGFILE("%s: result=0x%x device=0x%p pipeline=0x%p\n", __func__, result, This,
+				(ppPipelineState == NULL ? NULL : (*ppPipelineState)));
 			return result;
 		}
 
@@ -109,7 +114,8 @@ namespace detour
 			_COM_Outptr_  void **ppCommandList)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateCommandList(This, nodeMask, type, pCommandAllocator, pInitialState, riid, ppCommandList);
-			LOGFILE("%s: result=0x%x device=0x%p allocator=0x%p cmdlist=0x%p\n", __func__, result, This, pCommandAllocator, (*ppCommandList));
+			LOGFILE("%s: result=0x%x device=0x%p allocator=0x%p cmdlist=0x%p\n", __func__, result, This, pCommandAllocator,
+				(ppCommandList == NULL ? NULL : (*ppCommandList)));
 			return result;
 		}
 
@@ -122,7 +128,8 @@ namespace detour
 			_COM_Outptr_  void **ppvRootSignature)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateRootSignature(This, nodeMask, pBlobWithRootSignature, blobLengthInBytes, riid, ppvRootSignature);
-			LOGFILE("%s: result=0x%x device=0x%p signature=0x%p\n", __func__, result, This, (*ppvRootSignature));
+			LOGFILE("%s: result=0x%x device=0x%p signature=0x%p\n", __func__, result, This,
+				(ppvRootSignature == NULL ? NULL : (*ppvRootSignature)));
 			return result;
 		}
 
@@ -161,7 +168,8 @@ namespace detour
 			_COM_Outptr_opt_  void **ppvResource)
 		{
 			HRESULT result = m_pD3D12DeviceVtbl->CreateCommittedResource(This, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, riidResource, ppvResource);
-			LOGFILE("%s: result=0x%x device=0x%p res=0x%p\n", __func__, result, This, (*ppvResource));
+			LOGFILE("%s: result=0x%x device=0x%p res=0x%p\n", __func__, result, This,
+				(ppvResource == NULL ? NULL : (*ppvResource)));
 			return result;
 		}
 

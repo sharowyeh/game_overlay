@@ -35,7 +35,8 @@ namespace detour
 			_COM_Outptr_  void **ppvObject)
 		{
 			HRESULT result = m_pD3D11DeviceContextVtbl->QueryInterface(This, riid, ppvObject);
-			LOGFILE("%s: result=0x%x context=0x%p vobj=0x%p\n", __func__, result, This, (*ppvObject));
+			LOGFILE("%s: result=0x%x context=0x%p vobj=0x%p\n", __func__, result, This,
+				(ppvObject == NULL ? NULL : (*ppvObject)));
 			return result;
 		}
 

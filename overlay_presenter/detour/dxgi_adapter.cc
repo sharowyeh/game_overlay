@@ -35,7 +35,8 @@ namespace detour
 			_COM_Outptr_  void **ppvObject)
 		{
 			HRESULT result = m_pDXGIAdapterVtbl->QueryInterface(This, riid, ppvObject);
-			LOGFILE("%s: result=0x%x adapter=0x%p vobj=0x%p\n", __func__, result, This, (*ppvObject));
+			LOGFILE("%s: result=0x%x adapter=0x%p vobj=0x%p\n", __func__, result, This,
+				(ppvObject == NULL ? NULL : (*ppvObject)));
 			return result;
 		}
 
@@ -63,7 +64,8 @@ namespace detour
 			_COM_Outptr_  void **ppParent)
 		{
 			HRESULT result = m_pDXGIAdapterVtbl->GetParent(This, riid, ppParent);
-			LOGFILE("%s: result=0x%x adapter=0x%p parent=0x%p\n", __func__, result, This, (*ppParent));
+			LOGFILE("%s: result=0x%x adapter=0x%p parent=0x%p\n", __func__, result, This,
+				(ppParent == NULL ? NULL : (*ppParent)));
 			return result;
 		}
 
@@ -74,7 +76,8 @@ namespace detour
 			_COM_Outptr_  IDXGIOutput **ppOutput)
 		{
 			HRESULT result = m_pDXGIAdapterVtbl->EnumOutputs(This, Output, ppOutput);
-			LOGFILE("%s: result=0x%x adapter=0x%p output=%d pout=0x%p\n", __func__, result, This, Output, (*ppOutput));
+			LOGFILE("%s: result=0x%x adapter=0x%p output=%d pout=0x%p\n", __func__, result, This, Output,
+				(ppOutput == NULL ? NULL : (*ppOutput)));
 			return result;
 		}
 

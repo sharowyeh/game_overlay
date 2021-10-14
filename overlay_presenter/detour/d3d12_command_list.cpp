@@ -33,9 +33,10 @@ namespace detour
 			REFIID riid,
 			_COM_Outptr_  void **ppvObject)
 		{
-
 			HRESULT result = m_pD3D12CommandListVtbl->QueryInterface(This, riid, ppvObject);
-			LOGFILE("%s: result=0x%x device=0x%p vobj=0x%p\n", __func__, result, This, (*ppvObject));
+			// too many instance created and released, prevent log with meaningless
+			//LOGFILE("%s: result=0x%x device=0x%p vobj=0x%p\n", __func__, result, This,
+			//	(ppvObject == NULL ? NULL : (*ppvObject)));
 			return result;
 		}
 
@@ -43,7 +44,8 @@ namespace detour
 			ID3D12GraphicsCommandList * This)
 		{
 			ULONG result = m_pD3D12CommandListVtbl->AddRef(This);
-			LOGFILE("%s: result=0x%x device=0x%p\n", __func__, result, This);
+			// too many instance created and released, prevent log with meaningless
+			//LOGFILE("%s: result=0x%x device=0x%p\n", __func__, result, This);
 			return result;
 		}
 
@@ -51,7 +53,8 @@ namespace detour
 			ID3D12GraphicsCommandList * This)
 		{
 			ULONG result = m_pD3D12CommandListVtbl->Release(This);
-			LOGFILE("%s: result=0x%x device=0x%p\n", __func__, result, This);
+			// too many instance created and released, prevent log with meaningless
+			//LOGFILE("%s: result=0x%x device=0x%p\n", __func__, result, This);
 			return result;
 		}
 

@@ -156,6 +156,7 @@
     <ClInclude Include="detour\kernel.h" />
     <ClInclude Include="hook\d3d11_hook.h" />
     <ClInclude Include="hook\d3d12_hook.h" />
+    <ClInclude Include="hook\d3d_hook.h" />
     <ClInclude Include="hook\dxgi_hook.h" />
     <ClInclude Include="injector\image.h" />
     <ClInclude Include="injector\process.h" />

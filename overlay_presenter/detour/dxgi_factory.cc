@@ -35,7 +35,8 @@ namespace detour
 			_COM_Outptr_  void **ppvObject)
 		{
 			HRESULT result = m_pDXGIFactoryVtbl->QueryInterface(This, riid, ppvObject);
-			LOGFILE("%s: result=0x%x factory=0x%p vobj=0x%p\n", __func__, result, This, (*ppvObject));
+			LOGFILE("%s: result=0x%x factory=0x%p vobj=0x%p\n", __func__, result, This,
+				(ppvObject == NULL ? NULL : (*ppvObject)));
 			return result;
 		}
 
@@ -63,7 +64,8 @@ namespace detour
 			_COM_Outptr_  void **ppParent)
 		{
 			HRESULT result = m_pDXGIFactoryVtbl->GetParent(This, riid, ppParent);
-			LOGFILE("%s: result=0x%x factory=0x%p parent=0x%p\n", __func__, result, This, (*ppParent));
+			LOGFILE("%s: result=0x%x factory=0x%p parent=0x%p\n", __func__, result, This,
+				(ppParent == NULL ? NULL : (*ppParent)));
 			return result;
 		}
 
@@ -74,7 +76,8 @@ namespace detour
 			_COM_Outptr_  IDXGIAdapter **ppAdapter)
 		{
 			HRESULT result = m_pDXGIFactoryVtbl->EnumAdapters(This, Adapter, ppAdapter);
-			LOGFILE("%s: result=0x%x factory=0x%p adapter=%d padpt=0x%p\n", __func__, result, This, Adapter, (*ppAdapter));
+			LOGFILE("%s: result=0x%x factory=0x%p adapter=%d padpt=0x%p\n", __func__, result, This, Adapter,
+				(ppAdapter == NULL ? NULL : (*ppAdapter)));
 			return result;
 		}
 
@@ -99,7 +102,8 @@ namespace detour
 		{
 			HRESULT result = m_pDXGIFactoryVtbl->CreateSwapChain(This, pDevice, pDesc, ppSwapChain);
 			LOGFILE("%s: result=0x%x factory=0x%p device=0x%p w=%d h=%d fmt=%d swapchain=0x%p\n", __func__, result, This, pDevice,
-				pDesc->BufferDesc.Width, pDesc->BufferDesc.Height, pDesc->BufferDesc.Format, (*ppSwapChain));
+				pDesc->BufferDesc.Width, pDesc->BufferDesc.Height, pDesc->BufferDesc.Format,
+				(ppSwapChain == NULL ? NULL : (*ppSwapChain)));
 			return result;
 		}
 
@@ -110,7 +114,8 @@ namespace detour
 			_COM_Outptr_  IDXGIAdapter **ppAdapter)
 		{
 			HRESULT result = m_pDXGIFactoryVtbl->CreateSoftwareAdapter(This, Module, ppAdapter);
-			LOGFILE("%s: result=0x%x factory=0x%p module=0x%p adapter=0x%p\n", __func__, result, This, Module, (*ppAdapter));
+			LOGFILE("%s: result=0x%x factory=0x%p module=0x%p adapter=0x%p\n", __func__, result, This, Module,
+				(ppAdapter == NULL ? NULL : (*ppAdapter)));
 			return result;
 		}
 
